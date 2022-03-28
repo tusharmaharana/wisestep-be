@@ -4,8 +4,10 @@
   "main": "src/index.js",
   "license": "MIT",
   "scripts": {
-    "start": "node src/index.js",
+    "start": "yarn build && node dist/index.js",
     "dev": "nodemon",
+    "reset": "rimraf ./node_modules && rm yarn.lock && yarn",
+    "build": "rimraf ./dist && tsc",
     "tsc": "tsc"
   },
   "devDependencies": {
