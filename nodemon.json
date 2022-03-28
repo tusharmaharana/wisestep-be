@@ -1,0 +1,6 @@
+{
+  "watch": ["src"],
+  "ext": ".d.ts,.ts ,.js",
+  "ignore": [],
+  "exec": "ts-node -r dotenv/config --files src/index.ts"
+}

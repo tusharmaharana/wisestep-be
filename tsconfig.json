@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "target": "es2017",
+    "lib": ["dom", "DOM.Iterable", "esnext", "ES2020.String"],
+    "rootDirs": ["src"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": false,
+    "removeComments": true,
+    "strictNullChecks": false,
+    "sourceMap": true,
+    "outDir": "./dist",
+    "typeRoots": ["@types", "./node_modules/@types"]
+  },
+  "include": ["src"],
+  "exclude": ["node_modules"]
+}
