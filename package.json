@@ -6,8 +6,8 @@
   "scripts": {
     "start": "yarn build && node dist/index.js",
     "dev": "nodemon",
-    "reset": "rimraf ./node_modules && rm yarn.lock && yarn",
-    "build": "rimraf ./dist && tsc",
+    "reset": "rm -rf ./node_modules && rm yarn.lock && yarn",
+    "build": "rm -rf ./dist && tsc",
     "tsc": "tsc"
   },
   "devDependencies": {
@@ -29,5 +29,8 @@
     "cors": "^2.8.5",
     "express": "^4.17.3",
     "mongoose": "^6.2.8"
+  },
+  "engines": {
+    "node": "14.x"
   }
 }
