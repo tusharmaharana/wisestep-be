@@ -1,7 +1,8 @@
 {
   "name": "wisestep-be",
   "version": "1.0.0",
-  "main": "src/index.js",
+  "main": "dist/index",
+  "typings": "dist/index",
   "license": "MIT",
   "scripts": {
     "start": "yarn build && node dist/index.js",
