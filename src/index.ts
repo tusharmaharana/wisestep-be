@@ -17,7 +17,7 @@ app.use(
 );
 
 app.get('/api', (req: Request, res: Response) => {
-  res.send({ 'Hello World': 'This is my first API' });
+  res.send({ message: 'This is my first API' });
 });
 
 app.listen(keys.port, () => {

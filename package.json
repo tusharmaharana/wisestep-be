@@ -4,7 +4,7 @@
   "main": "src/index.js",
   "license": "MIT",
   "scripts": {
-    "start": "yarn build && node dist/index.js",
+    "start": "yarn tsc && node dist/index.js",
     "dev": "nodemon",
     "reset": "rm -rf ./node_modules && rm yarn.lock && yarn",
     "build": "rm -rf ./dist && tsc",
