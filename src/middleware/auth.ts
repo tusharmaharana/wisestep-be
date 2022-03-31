@@ -9,6 +9,7 @@ const auth = async (req: Request, res: Response, next: NextFunction): Promise<vo
   const token = req.cookies['cookie-id'];
   if (!token) {
     res.status(401).send({ message: 'Unauthorized request' });
+    return;
   }
   try {
     const decoded = jwt.verify(token, keys.cookieKey) as IUserData;
@@ -24,7 +25,7 @@ const auth = async (req: Request, res: Response, next: NextFunction): Promise<vo
     }
     res.status(403).send({ message: 'User not logged in' });
   } catch (err) {
-    res.status(401).send({ message: 'Unauthorized request' });
+    res.status(500).send({ message: 'Something went wrong' });
   }
 };
 

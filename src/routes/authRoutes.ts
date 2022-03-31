@@ -48,12 +48,11 @@ router.post('/login/verify', async (req: Request, res: Response) => {
 
 router.post('/login', async (req: Request, res: Response) => {
   try {
-    // Get user input
     const { email, fingerPrint } = req.body;
 
-    // Validate user input
     if (!email) {
       res.status(400).send({ message: 'Email is required' });
+      return;
     }
     // Validate if user exist in our database
     let user = (await findOneQuery(User, { email, fingerPrint })) as unknown as IUser;
@@ -78,6 +77,7 @@ router.post('/login', async (req: Request, res: Response) => {
     res.status(200).send({ isLoggedIn: user.isLoggedIn, token: token });
   } catch (err) {
     console.log(err);
+    res.status(500).send({ message: 'Something went wrong' });
   }
 });
 

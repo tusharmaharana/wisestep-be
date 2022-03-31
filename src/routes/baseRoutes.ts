@@ -9,12 +9,11 @@ const router = express.Router();
 router.get('/', auth, async (req: Request, res: Response) => {
   const { userId } = req.user as unknown as IUserData;
   try {
-    const anyUser = await findOneQuery(User, { _id: userId });
-    const users = (await findQuery(User, { email: anyUser.email, isLoggedIn: true })) as unknown as IUser[];
-    console.log(users);
-
+    const currentUser = await findOneQuery(User, { _id: userId });
+    const users = (await findQuery(User, { email: currentUser.email, isLoggedIn: true })) as unknown as IUser[];
     if (users.length > 1) {
-      res.status(402).send({ message: 'Another session is running', previousSessionId: users[0]._id });
+      const index = users.findIndex(user => user._id.toString() !== userId);
+      res.status(209).send({ message: 'Another session is running', previousSessionId: users[index]._id });
       return;
     }
     if (users.length === 1) {
