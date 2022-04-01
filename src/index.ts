@@ -25,6 +25,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// sample
 // app.get('/api', (req: Request, res: Response) => {
 //   console.log(req.session);
 
