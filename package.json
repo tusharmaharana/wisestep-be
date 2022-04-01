@@ -1,14 +1,14 @@
 {
   "name": "wisestep-be",
   "version": "1.0.0",
-  "main": "dist/index",
-  "typings": "dist/index",
+  "main": "dist/src/index",
+  "typings": "dist/src/index",
   "license": "MIT",
   "scripts": {
-    "start": "yarn build && node dist/index.js",
+    "start": "yarn build && node dist/src/index.js",
     "dev": "nodemon",
     "reset": "rm -rf ./node_modules && rm yarn.lock && yarn",
-    "build": "rm -rf ./dist && tsc",
+    "build": "rm -rf ./dist && yarn tsc -p tsconfig.release.json",
     "tsc": "tsc"
   },
   "devDependencies": {
