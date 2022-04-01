@@ -43,7 +43,10 @@ router.post('/login/verify', async (req: Request, res: Response) => {
     return res.status(403).send({ message: 'Invalid pin' });
   }
   await findOneAndUpdateQuery(User, { _id: userId, fingerPrint: fpId }, { isLoggedIn: true });
-  return res.cookie('cookie-id', token).status(200).send({ message: 'User verified and logged in' });
+  return res
+    .cookie('cookie-id', token, { sameSite: 'none', domain: `${keys.clientUrl}` })
+    .status(200)
+    .send({ message: 'User verified and logged in' });
 });
 
 router.post('/login', async (req: Request, res: Response) => {
