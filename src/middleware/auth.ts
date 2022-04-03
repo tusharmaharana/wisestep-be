@@ -1,31 +1,38 @@
-import { NextFunction, Request, Response } from 'express';
-import jwt from 'jsonwebtoken';
-import keys from '../config/keys';
-import { User } from '../models/User';
-import { IUserData } from '../routes/authRoutes';
-import { findOneQuery } from '../utils/generalQueries';
+import { NextFunction, Request, Response } from "express";
+import jwt from "jsonwebtoken";
+import keys from "../config/keys";
+import { User } from "../models/User";
+import { IUserData } from "../routes/authRoutes";
+import { findOneQuery } from "../utils/generalQueries";
 
-const auth = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
-  const token = req.cookies['cookie-id'];
+const auth = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> => {
+  const { token } = req.body;
   if (!token) {
-    res.status(401).send({ message: 'Unauthorized request' });
+    res.status(401).send({ message: "Unauthorized request" });
     return;
   }
   try {
     const decoded = jwt.verify(token, keys.cookieKey) as IUserData;
     req.user = decoded as unknown as string;
-    const user = await findOneQuery(User, { _id: decoded.userId, fingerPrint: decoded.fpId });
+    const user = await findOneQuery(User, {
+      _id: decoded.userId,
+      fingerPrint: decoded.fpId,
+    });
     if (!user) {
-      res.status(404).send({ message: 'User not found' });
+      res.status(404).send({ message: "User not found" });
       return;
     }
     if (user.isLoggedIn) {
       next();
       return;
     }
-    res.status(403).send({ message: 'User not logged in' });
+    res.status(403).send({ message: "User not logged in" });
   } catch (err) {
-    res.status(500).send({ message: 'Something went wrong' });
+    res.status(500).send({ message: "Something went wrong" });
   }
 };
 

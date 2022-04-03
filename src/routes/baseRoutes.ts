@@ -6,7 +6,7 @@ import { IUser, IUserData } from './authRoutes';
 
 const router = express.Router();
 
-router.get('/', auth, async (req: Request, res: Response) => {
+router.post('/', auth, async (req: Request, res: Response) => {
   const { userId } = req.user as unknown as IUserData;
   try {
     const currentUser = await findOneQuery(User, { _id: userId });
